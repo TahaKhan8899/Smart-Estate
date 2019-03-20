@@ -140,6 +140,6 @@ public class Sort
     if(isSorted(list))
       System.out.println("The object is sorted.");
     else
-      System.out.println("The object is not sorted");
+      System.out.println("The object is not sorted.");
   }
 }
