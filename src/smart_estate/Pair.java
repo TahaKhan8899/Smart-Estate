@@ -1,3 +1,4 @@
+package smart_estate;
 /**
  * This is generic class for a pair that can hold two items
  * @author Taha Khan

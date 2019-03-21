@@ -1,5 +1,7 @@
+package smart_estate;
 /**
  * This module reads data and parses data from the Median Housing Prices dataset
+
  * @author Taha Khan
  *
  */
@@ -21,7 +23,7 @@ public class ReadHousingPrices {
 	 * It reads a csv file and parses it into an array of Pairs
 	 * @return array of Pairs - (State, Price)
 	 */
-	public Pair[] readPrices() {
+	public Pair[] readPrices() { 
 		
 		try {
 			
