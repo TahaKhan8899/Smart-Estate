@@ -20,6 +20,14 @@ public class StateInfo {
 	}
 	
 	/**
+	 * @brief get name of state
+	 * @return value string of state
+	 */
+	public String getState() {
+		return this.state;
+	}
+	
+	/**
 	 * @brief get housing price index of state
 	 * @return value double for hpi
 	 */
@@ -65,5 +73,13 @@ public class StateInfo {
 	 */
 	public void setHousingPrice(double housing_price) {
 		this.housing_price = housing_price;
+	}
+	
+	/**
+	 * @brief output object as string
+	 * @return string form of state info
+	 */
+	public String toString() {
+		return this.state+": " + " HPI: " + this.hpi + " Crime Rate: " + this.crime_rate + " Housing Price: " + this.housing_price;
 	}
 }
