@@ -11,7 +11,7 @@ import java.io.*;
 public class ReadCrimeRate {
 	public static Pair[] CRList() {
 		try {
-			Scanner scan = new Scanner(new File("data\\CrimeStateByState.csv"));
+			Scanner scan = new Scanner(new File("data/CrimeStateByState.csv"));
 			List<String> lines = new ArrayList<String>();
 			while (scan.hasNextLine()) 
 				lines.add(scan.nextLine());

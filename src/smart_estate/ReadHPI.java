@@ -21,12 +21,12 @@ public class ReadHPI{
 	 * @param hpi_file - hpi_fileof the file where HPI for different states is
 	 */
 	
-	public static void read_data(String hpi_file) throws IOException {
-		
+	public static Pair[] read_data(String hpi_file) throws IOException {
+		Pair[] indexes = new Pair[50];
 		try {
 			ArrayList<Double> base_years = new ArrayList<Double>();
 			ArrayList<Double> curr_years = new ArrayList<Double>();
-			Pair[] indexes = new Pair[50];
+			
 			BufferedReader reader = new BufferedReader (new FileReader(hpi_file));
 			String line = reader.readLine();
 			Double difference;
@@ -77,12 +77,15 @@ public class ReadHPI{
 			System.out.println(e);
 		}
 
-		
+		return indexes;
 	}
 
 	public static void main(String[] args) throws IOException {
 		read_data("data/hpi.csv");
-
+		Pair[] array = new Pair[50];
+		array = read_data("data/hpi.csv");
+		for (int i = 0; i < 50; i++)
+			System.out.print(array[i].toString()+"\n");
 	}
 
 }

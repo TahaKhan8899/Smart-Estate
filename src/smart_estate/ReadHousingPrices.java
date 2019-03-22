@@ -9,7 +9,7 @@ import java.io.*;
 import java.util.*;
 public class ReadHousingPrices {
 	
-	String fileName;
+	static String fileName;
 	
 	/**
 	 * This is the constructor for reading housing prices  
@@ -23,10 +23,10 @@ public class ReadHousingPrices {
 	 * It reads a csv file and parses it into an array of Pairs
 	 * @return array of Pairs - (State, Price)
 	 */
-	public Pair[] readPrices() { 
+	public static Pair[] readPrices(String name) { 
 		
 		try {
-			
+			fileName = name;
 			//open file
 			Scanner sc = new Scanner(new File(fileName));
 			List<String> lines = new ArrayList<String>();
@@ -72,7 +72,7 @@ public class ReadHousingPrices {
 	 * @param s - a line from the housingPrices csv
 	 * @return String for the state
 	 */
-	private String parseLineForState(String s)
+	private static String parseLineForState(String s)
 	{
 		//break it up on the ',"' and '",'
 		//this gives the form: "Alabama$132,100"
@@ -86,7 +86,7 @@ public class ReadHousingPrices {
 	 * @param s - a line from the housingPrices csv
 	 * @return Double for the price
 	 */
-	private double parseLineforPrice(String s)
+	private static double parseLineforPrice(String s)
 	{
 		//break it up on the ',"' and '",'
 		//this gives the form: "Alabama$132,100"
