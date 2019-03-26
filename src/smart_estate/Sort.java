@@ -36,7 +36,7 @@ public class Sort
     while(i <= greater) 
     {
       if(lt(obj[i], obj[l])) 
-        swap(obj, lesser++, i++);
+        swap(obj, lesser++, i);
       else if(gt(obj[i], obj[l])) 
         swap(obj, i, greater--);
       else
