@@ -36,13 +36,13 @@ public class ReadHPI{
 				
 				String[] comma_seperated = line.split(","); // separating each line by by its fields
 				
-				if (comma_seperated.length == 6) { //insurances it's a valid line
+				if (comma_seperated.length == 6) { //insures it's a valid line
 					
 					if (comma_seperated[3].equals("2007") 
 					    && comma_seperated[4].equals("4") 
-					    && !comma_seperated[2].equals("District of Columbia")) {
+					    && !comma_seperated[2].equals("District of Columbia")) { // Setting the base year (2007)
 						base_years.add(Double.valueOf(comma_seperated[5]));
-					} else if (comma_seperated[3].equals("2017") 
+					} else if (comma_seperated[3].equals("2017") //HPI is calculated when the current year (2017) is reached
 							   && comma_seperated[4].equals("4") 
 							   && !comma_seperated[2].equals("District of Columbia")) {
 						           curr_years.add(Double.valueOf(comma_seperated[5]));
@@ -51,10 +51,10 @@ public class ReadHPI{
 						           i++;
 				      }	
 				}		
-				line = reader.readLine();
+				line = reader.readLine(); //Next line in the CSV
 			}
 				
-		} catch(FileNotFoundException e) {
+		} catch(FileNotFoundException e) { //Exception if the file is not found
 			System.out.println(e);
 		}
 
