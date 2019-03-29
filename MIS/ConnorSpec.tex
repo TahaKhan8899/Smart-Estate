@@ -1,0 +1,317 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage{paralist}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{hhline}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{url}
+
+\oddsidemargin -10mm
+\evensidemargin -10mm
+\textwidth 160mm
+\textheight 200mm
+\renewcommand\baselinestretch{1.0}
+
+\pagestyle {plain}
+\pagenumbering{arabic}
+
+\newcounter{stepnum}
+
+%% Comments
+
+\usepackage{color}
+
+\newif\ifcomments\commentstrue
+
+\ifcomments
+\newcommand{\authornote}[3]{\textcolor{#1}{[#3 ---#2]}}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\else
+\newcommand{\authornote}[3]{}
+\newcommand{\todo}[1]{}
+\fi
+
+\newcommand{\wss}[1]{\authornote{blue}{SS}{#1}}
+
+\title{Smart Estate Specification}
+\author{COMPSCI 2XB3 L09 Group 9}
+
+\begin {document}
+
+\maketitle
+This Module Interface Specification (MIS) document contains modules, types and
+methods for implementing Smart Estate.
+
+\newpage
+
+\section* {StateInfo Type Module}
+
+\subsection*{Module}
+
+StateInfo
+
+\subsection* {Uses}
+
+N/A
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Constants}
+
+None
+
+\subsubsection* {Exported Types}
+
+StateInfo = ?
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | p{5cm} |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new StateInfo & String & StateInfo & none\\
+\hline
+getState &  & String & none\\
+\hline
+getHPI & & $\mathbb{R}$ & none\\
+\hline
+setHPI & $\mathbb{R}$ &  & none\\
+\hline
+getCrimeRate & & $\mathbb{R}$ & none\\
+\hline
+setCrimeRate & $\mathbb{R}$ &  & none\\
+\hline
+getHousingPrice & & $\mathbb{R}$ & none\\
+\hline
+setHousingPrice & $\mathbb{R}$ &  & none\\
+\hline
+toString & & String & none\\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+$state$: String\\
+$hpi$: $\mathbb{R}$\\
+$crime\_rate$: $\mathbb{R}$\\
+$housing\_price$: $\mathbb{R}$
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Assumptions \& Design Decisions}
+
+\begin{itemize}
+\item The StateInfo constructor is called for each object instance before any
+  other access routine is called for that object.  The constructor can only be
+  called once.
+\item Once state info is gathered for each StateInfo object methods setHPI, setCrimeRate, and setHousingPrice are only called once.
+\end{itemize}
+
+\subsubsection* {Access Routine Semantics}
+
+new StateInfo($s$):
+\begin{itemize}
+\item transition: $state := s$
+\item output: $\mathit{out} := \mathit{self}$
+\item exception: none
+\end{itemize}
+
+\noindent getState():
+\begin{itemize}
+\item output: $out := state$
+\item exception: none
+\end{itemize}
+
+\noindent getHPI():
+\begin{itemize}
+\item output: $out := hpi$
+\item exception: none
+\end{itemize}
+
+\noindent setHPI($v$):
+\begin{itemize}
+\item transition: $hpi := v$
+\item exception: none
+\end{itemize}
+
+\noindent getCrimeRate():
+\begin{itemize}
+\item output: $out := crime\_rate$
+\item exception: none
+\end{itemize}
+
+\noindent setCrimeRate($v$):
+\begin{itemize}
+\item transition: $crime\_rate := v$
+\item exception: none
+\end{itemize}
+
+\noindent getHousingPrice():
+\begin{itemize}
+\item output: $out := housing\_price$
+\item exception: none
+\end{itemize}
+
+\noindent getHousingPrice($v$):
+\begin{itemize}
+\item transition: $housing\_price := v$
+\item exception: none
+\end{itemize}
+
+\noindent toString():
+\begin{itemize}
+\item output: $\mathit{out} :=$ "$state$: HPI: $hpi$ Crime Rate: $crime\_rate$ Housing Price: $housing\_price$"
+\item exception: none
+\end{itemize}
+
+
+\newpage
+
+\section* {PopulateStateInfo Module}
+
+\subsection* {Module}
+
+PopulateStateInfo
+
+\subsection* {Uses}
+
+ReadHPI\\
+ReadCrimeRate\\
+ReadHousingPrices\\
+StateInfo\\
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | p{5cm} |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+initStates &  &  & none\\
+\hline
+populateHPI & & & none\\
+\hline
+populateCrimeRate & & & none\\
+\hline
+populateHousingPrice & & & none\\
+\hline
+populateStateInfo & & seq of StateInfo & none\\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+$states$: seq of StateInfo\\
+$state\_names$: seq of String = ["Alabama","Alaska", ... , "Wyoming"]
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Assumptions \& Design Decisions}
+
+\begin{itemize}
+\item The result of populateStateInfo must be stored in a StateInfo list of 50 length.
+\end{itemize}
+
+\subsubsection* {Access Routine Semantics}
+
+initStates():
+\begin{itemize}
+\item transition: $states := $($\forall s: $String $| s \in state\_names \;\;.\;\; s = $ StateInfo($s$))
+\item exception: none
+\end{itemize}
+
+\noindent populateHPI():
+\begin{itemize}
+\item transition: $states := $\\($\forall i: $int $| 0 \le i \le 50 \;.\; states[i].$setHPI(ReadHPI.read\_data("data/hpi.csv").value()))
+\item exception: none
+\end{itemize}
+
+\noindent populateCrimeRate():
+\begin{itemize}
+\item transition: $states := $\\($\forall i: $int $| 0 \le i \le 50 \;.\; states[i].$setCrimeRate(ReadCrimeRate.CRList().value()))
+\item exception: none
+\end{itemize}
+
+\noindent populateHousingPrice():
+\begin{itemize}
+\item transition: $states := $\\($\forall i: $int $| 0 \le i \le 50 \;.\; states[i].$setHousingPrice(ReadHousingPrices.\\readPrices("data/housingPrices.csv").value()))
+\item exception: none
+\end{itemize}
+
+\noindent populateStateInfo():
+\begin{itemize}
+\item transition: initStates(); populateHPI(); populateCrimeRate(); \\populateHousingPrice();
+\item output: $\mathit{out} := states$
+\item exception: None
+\end{itemize}
+
+\newpage
+
+\section* {Binary Search Module}
+
+\subsection* {Module}
+
+binSearch
+
+\subsection* {Uses}
+
+StateInfo
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Types}
+
+fieldT = {hpi, crime\_rate, housing\_price}
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | p{5cm} |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+binSearch &  seq of StateInfo, fieldT, $\mathbb{R}$ &  StateInfo & none\\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+None
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Assumptions \& Design Decisions}
+
+\begin{itemize}
+\item The result of populateStateInfo must be stored in a StateInfo list of 50 length.
+\end{itemize}
+
+\subsubsection* {Access Routine Semantics}
+
+initStates():
+\begin{itemize}
+\item transition: 
+\item output: $\mathit{out} :=$
+\item exception: none
+\end{itemize}
+
+\newpage
+
+\end{document}
