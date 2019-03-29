@@ -23,6 +23,7 @@ public class binSearch {
 	 * @return StateInfo object containing (closest) value
 	 */
 	public static StateInfo binSearch(StateInfo[] arr, fieldT field, double key) {
+		Sort.sort(arr, field);
 		
 		// if outside bounds return closest
 		switch (field) {
@@ -116,13 +117,14 @@ public class binSearch {
 		array = PopulateStateInfo.populateStateInfo();
 		
 		//demo 
-		Sort.sort(array, "invest");
-		StateInfo result = binSearch(array, fieldT.housing_price, 120000);
+		
+		StateInfo result = binSearch(array, fieldT.hpi, 112);
 		
 		//result
 		System.out.println(result.getState());
 	}
 	*/
+	
 }
 
 

@@ -14,9 +14,9 @@ public class Sort {
 	/**
 	 * @brief Function called by client to sort the array
 	 * @param a - An array of StateInfo objects
-	 * @param intent - A string that signals the client's intent (buy, sell, or invest)
+	 * @param intent - An enum of fieldT that signals the what field to sort by
 	 */
-	public static void sort(StateInfo[] a, String intent) {
+	public static void sort(StateInfo[] a, fieldT intent) {
 		StdRandom.shuffle(a); // Eliminate dependence on input.
 		sort(a, 0, a.length - 1, intent);
 	}
@@ -27,9 +27,9 @@ public class Sort {
 	 * @param a, an array of StateInfo objects
 	 * @param lo, first index
 	 * @param hi, last index
-	 * @param intent, a string that signals the client's intent (buy, sell, or invest)
+	 * @param intent, An enum of fieldT that signals the what field to sort by
 	 */
-	private static void sort(StateInfo[] a, int lo, int hi, String intent) {
+	private static void sort(StateInfo[] a, int lo, int hi, fieldT intent) {
 		if (hi <= lo)
 			return;
 		int j = partition(a, lo, hi, intent); 
@@ -43,9 +43,9 @@ public class Sort {
 	 * @param a, an array of StateInfo objects
 	 * @param lo, first index
 	 * @param hi, last index
-	 * @param intent, a string that signals the client's intent (buy, sell, or invest)
+	 * @param intent, An enum of fieldT that signals the what field to sort by
 	 */
-	private static int partition(StateInfo[] a, int lo, int hi, String intent) {
+	private static int partition(StateInfo[] a, int lo, int hi, fieldT intent) {
 		int i = lo, j = hi + 1; // left and right scan indices
 		StateInfo v = a[lo]; // partitioning item
 		while (true) { // Scan right, scan left, check for scan complete, and exchange.
@@ -75,12 +75,12 @@ public class Sort {
 	 * @param w, A StateInfo object to be compared
 	 * @param intent, a string that signals the client's intent (buy, sell, or invest)
 	 */
-	private static boolean less(StateInfo v, StateInfo w, String intent) {
-		if (intent.toLowerCase().equals("invest")) {
+	private static boolean less(StateInfo v, StateInfo w, fieldT intent) {
+		if (intent == fieldT.housing_price) {
 			return v.getHousingPrice() < w.getHousingPrice();	
-		} else if (intent.toLowerCase().equals("sell")) {
+		} else if (intent == fieldT.crime_rate) {
 			return v.getCrimeRate() < w.getCrimeRate();
-		} else if (intent.toLowerCase().equals("buy")) {
+		} else if (intent == fieldT.hpi) {
 			return v.getHPI() < w.getHPI();
 		} 
 		System.out.println("Intent field filled out incorrectly");
@@ -116,7 +116,7 @@ public class Sort {
 		thrd.setHousingPrice(4.0);
 		thrd.setHPI(3.0);
 		StateInfo[] sample_lst = {fst, snd, thrd};
-		sort(sample_lst, "buy");
+		sort(sample_lst, fieldT.housing_price);
 		for (int i = 0; i < sample_lst.length; i++) {
 			System.out.println(sample_lst[i]);
 			
