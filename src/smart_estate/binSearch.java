@@ -1,16 +1,30 @@
 package smart_estate;
+
+/**
+ * @brief enum to represent 3 fields to search
+ */
+enum fieldT {hpi, crime_rate, housing_price}
+
 /**
  * This module performs binary search on the list of StateInfo's
  * @author Connor Hewick
  *
  */
+
 public class binSearch {
 
-	enum fieldT {hpi, crime_rate, housing_price}
-	private final static double TOL = 20000; 
 	
+	
+	/**
+	 * @brief binary search that will return closest min value if key is not found
+	 * @param arr array of StateInfo's to search through
+	 * @param field enum of fieldT to specify what field of StateInfo to search for
+	 * @param key value to find
+	 * @return StateInfo object containing (closest) value
+	 */
 	public static StateInfo binSearch(StateInfo[] arr, fieldT field, double key) {
 		
+		// if outside bounds return closest
 		switch (field) {
 		case hpi:
 			if (key < arr[0].getHPI()) {
@@ -38,18 +52,15 @@ public class binSearch {
 			break;
 		}
 		
-		
+		// set min and max index values
 		int lo = 0;
 		int hi = arr.length - 1;
 		
-
 		while (lo <= hi) {
-			int mid = (hi + lo) / 2;
-			
+			int mid = (hi + lo) / 2; // set new mid point
 			
 			// search hpi
 			if (field == fieldT.hpi) {
-				
 				if (key < arr[mid].getHPI()) {
 					hi = mid - 1;
 				} else if (key > arr[mid].getHPI()) {
@@ -57,7 +68,6 @@ public class binSearch {
 				} else {
 					return arr[mid];
 				}
-				
 				
 			// search crime rate
 			} else if (field == fieldT.crime_rate) {
@@ -68,9 +78,9 @@ public class binSearch {
 				} else {
 					return arr[mid];
 				}
-				
-			// search housing price
 			} 
+			
+			// search housing price
 			else if (field == fieldT.housing_price) {
 				if (key < arr[mid].getHousingPrice()) {
 					hi = mid - 1;
@@ -82,10 +92,7 @@ public class binSearch {
 			}
 		}
 		
-		
-		
-		
-		
+		// if not found then return closest min value
 		switch (field) {
 		case hpi:
 			return (arr[lo].getHPI() - key) < (key - arr[hi].getHPI()) ? arr[lo] : arr[hi];
@@ -95,29 +102,27 @@ public class binSearch {
 			return (arr[lo].getHousingPrice() - key) < (key - arr[hi].getHousingPrice()) ? arr[lo] : arr[hi];
 		}
 		
-		
-		// if key not found in any state
+		// empty return if all fails, code will never run due to switch case above
 		StateInfo empty = new StateInfo("empty");
 		return empty;
-		
 	}
 	
-	
+	/*
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		// demo of use
 		
 		// get state info
 		StateInfo[] array = new StateInfo[50];
 		array = PopulateStateInfo.populateStateInfo();
 		
 		//demo 
-		
 		Sort.sort(array, "invest");
 		StateInfo result = binSearch(array, fieldT.housing_price, 120000);
 		
 		//result
 		System.out.println(result.getState());
 	}
+	*/
 }
 
 
