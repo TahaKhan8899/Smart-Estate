@@ -14,7 +14,7 @@ public class binSearch {
 		int first = 0;
 		int last = arr.length - 1;
 		int mid = (first + last) / 2;
-		
+		//test
 		while (first <= last) {
 			
 			// search hpi
