@@ -11,54 +11,90 @@ public class binSearch {
 	
 	public static StateInfo binSearch(StateInfo[] arr, fieldT field, double key) {
 		
-		int first = 0;
-		int last = arr.length - 1;
-		int mid = (first + last) / 2;
-		//test
-		while (first <= last) {
+		switch (field) {
+		case hpi:
+			if (key < arr[0].getHPI()) {
+				return arr[0];
+			}
+			if (key > arr[arr.length-1].getHPI()) {
+				return arr[0];
+			}
+			break;
+		case crime_rate:
+			if (key < arr[0].getCrimeRate()) {
+				return arr[0];
+			}
+			if (key > arr[arr.length-1].getCrimeRate()) {
+				return arr[0];
+			}
+			break;
+		case housing_price:
+			if (key < arr[0].getHousingPrice()) {
+				return arr[0];
+			}
+			if (key > arr[arr.length-1].getHousingPrice()) {
+				return arr[0];
+			}
+			break;
+		}
+		
+		
+		int lo = 0;
+		int hi = arr.length - 1;
+		
+
+		while (lo <= hi) {
+			int mid = (hi + lo) / 2;
+			
 			
 			// search hpi
 			if (field == fieldT.hpi) {
-				System.out.println(mid);
-				if (arr[mid].getHPI() < key) {
-					first = mid++;
-				} else if (arr[mid].getHPI() == key) {
-					return arr[mid];
+				
+				if (key < arr[mid].getHPI()) {
+					hi = mid - 1;
+				} else if (key > arr[mid].getHPI()) {
+					lo = mid + 1;
 				} else {
-					last = mid - 1;
+					return arr[mid];
 				}
-				mid = (first + last) / 2;
+				
 				
 			// search crime rate
 			} else if (field == fieldT.crime_rate) {
-				if (arr[mid].getCrimeRate() < key) {
-					first = mid++;
-				} else if (arr[mid].getCrimeRate() == key) {
-					return arr[mid];
+				if (key < arr[mid].getCrimeRate()) {
+					hi = mid - 1;
+				} else if (key > arr[mid].getCrimeRate()) {
+					lo = mid + 1;
 				} else {
-					last = mid - 1;
+					return arr[mid];
 				}
-				mid = (first + last) / 2;
 				
 			// search housing price
 			} 
 			else if (field == fieldT.housing_price) {
-				if (arr[mid].getHousingPrice() < key) {
-					first = mid++;
-				} 
-				else if (arr[mid].getHousingPrice() == key) {
+				if (key < arr[mid].getHousingPrice()) {
+					hi = mid - 1;
+				} else if (key > arr[mid].getHousingPrice()) {
+					lo = mid + 1;
+				} else {
 					return arr[mid];
-				} 
-//				//this is the test for tolerance
-//				else if (arr[mid].getHousingPrice() > key-TOL && arr[mid].getHousingPrice() < key+TOL) {
-//					return arr[mid];
-//				} 
-				else {
-					last = mid - 1;
 				}
-				mid = (first + last) / 2;
 			}
 		}
+		
+		
+		
+		
+		
+		switch (field) {
+		case hpi:
+			return (arr[lo].getHPI() - key) < (key - arr[hi].getHPI()) ? arr[lo] : arr[hi];
+		case crime_rate:
+			return (arr[lo].getCrimeRate() - key) < (key - arr[hi].getCrimeRate()) ? arr[lo] : arr[hi];
+		case housing_price:
+			return (arr[lo].getHousingPrice() - key) < (key - arr[hi].getHousingPrice()) ? arr[lo] : arr[hi];
+		}
+		
 		
 		// if key not found in any state
 		StateInfo empty = new StateInfo("empty");
@@ -75,11 +111,14 @@ public class binSearch {
 		array = PopulateStateInfo.populateStateInfo();
 		
 		//demo 
-		System.out.println(array[5].getHousingPrice());
+		
 		Sort.sort(array, "invest");
-		StateInfo result = binSearch(array, fieldT.housing_price, 286100);
+		StateInfo result = binSearch(array, fieldT.housing_price, 120000);
 		
 		//result
 		System.out.println(result.getState());
 	}
 }
+
+
+
