@@ -2,7 +2,6 @@ package smart_estate;
 
 import java.util.Scanner;
 
-import smart_estate.binSearch.fieldT;
 /**
  * This is the main class that integrates all other modules
  * @author tahakhan
