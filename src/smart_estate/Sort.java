@@ -13,8 +13,8 @@ public class Sort {
 	
 	/**
 	 * @brief Function called by client to sort the array
-	 * @param An array of StateInfo objects
-	 * @param A string that signals the client's intent (buy, sell, or invest)
+	 * @param a - An array of StateInfo objects
+	 * @param intent - A string that signals the client's intent (buy, sell, or invest)
 	 */
 	public static void sort(StateInfo[] a, String intent) {
 		StdRandom.shuffle(a); // Eliminate dependence on input.

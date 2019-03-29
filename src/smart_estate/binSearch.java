@@ -1,8 +1,13 @@
 package smart_estate;
-
+/**
+ * This module performs binary search on the list of StateInfo's
+ * @author Connor Hewick
+ *
+ */
 public class binSearch {
 
 	enum fieldT {hpi, crime_rate, housing_price}
+	private final static double TOL = 20000; 
 	
 	public static StateInfo binSearch(StateInfo[] arr, fieldT field, double key) {
 		
@@ -36,12 +41,19 @@ public class binSearch {
 				mid = (first + last) / 2;
 				
 			// search housing price
-			} else if (field == fieldT.housing_price) {
+			} 
+			else if (field == fieldT.housing_price) {
 				if (arr[mid].getHousingPrice() < key) {
 					first = mid++;
-				} else if (arr[mid].getHousingPrice() == key) {
+				} 
+				else if (arr[mid].getHousingPrice() == key) {
 					return arr[mid];
-				} else {
+				} 
+//				//this is the test for tolerance
+//				else if (arr[mid].getHousingPrice() > key-TOL && arr[mid].getHousingPrice() < key+TOL) {
+//					return arr[mid];
+//				} 
+				else {
 					last = mid - 1;
 				}
 				mid = (first + last) / 2;
