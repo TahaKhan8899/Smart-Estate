@@ -85,8 +85,6 @@ public class Sort {
 		} 
 		System.out.println("field field filled out incorrectly");
 		return false;
-
-		
 	}
     
 	
