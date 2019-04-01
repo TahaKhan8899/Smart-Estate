@@ -1,5 +1,5 @@
 /**
- * This module sorts an array of StateInfo objects by HPI, crime rate, or housing prices depending on the client's intent
+ * This module sorts an array of StateInfo objects by HPI, crime rate, or housing prices
  * @author Noa Barsky
  * Citation: Algorithms Fourth Edition by Robert Sedgwick and Kevin Wayne
  */
@@ -14,11 +14,11 @@ public class Sort {
 	/**
 	 * @brief Function called by client to sort the array
 	 * @param a - An array of StateInfo objects
-	 * @param intent - An enum of fieldT that signals the what field to sort by
+	 * @param field - An enum of fieldT that signals the what field to sort by
 	 */
-	public static void sort(StateInfo[] a, fieldT intent) {
+	public static void sort(StateInfo[] a, fieldT field) {
 		StdRandom.shuffle(a); // Eliminate dependence on input.
-		sort(a, 0, a.length - 1, intent);
+		sort(a, 0, a.length - 1, field);
 	}
     
 	
@@ -27,14 +27,14 @@ public class Sort {
 	 * @param a, an array of StateInfo objects
 	 * @param lo, first index
 	 * @param hi, last index
-	 * @param intent, An enum of fieldT that signals the what field to sort by
+	 * @param field, An enum of fieldT that signals the what field to sort by
 	 */
-	private static void sort(StateInfo[] a, int lo, int hi, fieldT intent) {
+	private static void sort(StateInfo[] a, int lo, int hi, fieldT field) {
 		if (hi <= lo)
 			return;
-		int j = partition(a, lo, hi, intent); 
-		sort(a, lo, j - 1, intent); 
-		sort(a, j + 1, hi, intent);
+		int j = partition(a, lo, hi, field); 
+		sort(a, lo, j - 1, field); 
+		sort(a, j + 1, hi, field);
 	}
 
 	
@@ -43,18 +43,18 @@ public class Sort {
 	 * @param a, an array of StateInfo objects
 	 * @param lo, first index
 	 * @param hi, last index
-	 * @param intent, An enum of fieldT that signals the what field to sort by
+	 * @param field, An enum of fieldT that signals the what field to sort by
 	 */
-	private static int partition(StateInfo[] a, int lo, int hi, fieldT intent) {
+	private static int partition(StateInfo[] a, int lo, int hi, fieldT field) {
 		int i = lo, j = hi + 1; // left and right scan indices
 		StateInfo v = a[lo]; // partitioning item
 		while (true) { // Scan right, scan left, check for scan complete, and exchange.
-			while (less(a[++i], v, intent)) {
+			while (less(a[++i], v, field)) {
 				if (i == hi) {
 					break;
 				}
 			};
-			while (less(v, a[--j], intent)) {
+			while (less(v, a[--j], field)) {
 				if (j == lo) {
 					break;
 				}
@@ -70,20 +70,20 @@ public class Sort {
 	
 	
 	/**
-	 * @brief Helper functions that compares to StateInfo objects' properties based on the intent parameter
+	 * @brief Helper functions that compares to StateInfo objects' properties based on the field parameter
 	 * @param v, a StateInfo object to be compared
 	 * @param w, A StateInfo object to be compared
-	 * @param intent, a string that signals the client's intent (buy, sell, or invest)
+	 * @param field, a string that signals what to sort by (hpi, housing price, crime rate)
 	 */
-	private static boolean less(StateInfo v, StateInfo w, fieldT intent) {
-		if (intent == fieldT.housing_price) {
+	private static boolean less(StateInfo v, StateInfo w, fieldT field) {
+		if (field == fieldT.housing_price) {
 			return v.getHousingPrice() < w.getHousingPrice();	
-		} else if (intent == fieldT.crime_rate) {
+		} else if (field == fieldT.crime_rate) {
 			return v.getCrimeRate() < w.getCrimeRate();
-		} else if (intent == fieldT.hpi) {
+		} else if (field == fieldT.hpi) {
 			return v.getHPI() < w.getHPI();
 		} 
-		System.out.println("Intent field filled out incorrectly");
+		System.out.println("field field filled out incorrectly");
 		return false;
 
 		
