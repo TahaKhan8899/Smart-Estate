@@ -314,4 +314,77 @@ initStates():
 
 \newpage
 
+\section* {ReadCrimeRate Module}
+
+\subsection* {Module}
+
+ReadCrimeRate
+
+\subsection* {Uses}
+
+Pair
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Constants}
+
+None
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+load\_crime\_data & $s: \mbox{string}$ & ~ & ~\\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {Environment Variables}
+
+crime\_rate\_data: File listing crime rate data
+
+\subsubsection* {State Variables}
+
+None
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Assumptions}
+
+The input file will match the given specification.
+
+\subsubsection* {Access Routine Semantics}
+
+\noindent load\_crime\_data($s$)
+\begin{itemize}
+\item transition: read data from the file crime\_rate\_data associated with the string s.
+  Use this data to create an array of Pairs, which house the name of a state along with
+  the avergae number of violent crimes per capita over 49 years for every 100,000 person.
+
+  The csv file has the following format, where $year$, $population$, total number of $violent\ crime$,
+  followed by a breakdown of the number of violent crimes into sub categories including murder, robbery, 
+  aggravated assault, etc. which is not used in the computation of the overall project. This is split by a 5 wide
+  horizzontal gap separating each state's independent statistics. 
+
+  \begin{equation}
+    \begin{array}{cccc}
+      year_0, & population_0, & violent_crimes_0, & . . . \\
+      year_1, & population_1, & violent_crimes_1, & . . . \\
+      year_2, & population_2, & violent_crimes_2, & . . . 
+      \\
+      ..., & ..., & ..., & ...
+      \\
+      year_{m-1}, & population_{m-1}, & violent_crimes_{m-1}, & . . . \\
+    \end{array}
+  \end{equation}
+
+\item exception: FileNotFoundException
+\end{itemize}
+
+
 \end{document}

@@ -9,9 +9,11 @@ import java.util.Scanner;
 import java.io.*;
 
 public class ReadCrimeRate {
-	public static Pair[] CRList() {
+	static String crime_rate_data;
+	
+	public static Pair[] load_crime_data(String s) {
 		try {
-			Scanner scan = new Scanner(new File("data/CrimeStateByState.csv"));
+			Scanner scan = new Scanner(new File(s));
 			List<String> lines = new ArrayList<String>();
 			while (scan.hasNextLine()) 
 				lines.add(scan.nextLine());
@@ -65,7 +67,8 @@ public class ReadCrimeRate {
 	}
 	
 	public static void main(String[] args) {
-		Pair[] arr = CRList();
+		crime_rate_data = "data/CrimeStateByState.csv";
+		Pair[] arr = load_crime_data(crime_rate_data);
 		for (int i = 0; i < 50; i++)
 			System.out.println(arr[i]);
 	}

@@ -32,7 +32,7 @@ public class PopulateStateInfo {
 	}
 	
 	private static void populateCrimeRate() {
-		Pair[] CR = ReadCrimeRate.CRList();
+		Pair[] CR = ReadCrimeRate.load_crime_data("data/CrimeStateByState.csv");
 		for (int i = 0; i < 50; i++) {
 			states[i].setCrimeRate(CR[i].value());
 		}
