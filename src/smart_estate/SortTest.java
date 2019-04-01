@@ -16,6 +16,12 @@ public class SortTest {
 
 	private StateInfo[] states;
 	
+	/**
+	 * Tests to check that a list of states is sorted in ascending order by some fieldT
+	 * @param states - An array of StateInfo (a list of states)
+	 * @param field - A fieldT (either hpi, crime rate, housing price)
+	 * @return - True if the array is sorted, false otherwise
+	 */
 	public static boolean isSorted(StateInfo[] states, fieldT field) {
 		int n = states.length;
 		System.out.println(field);
@@ -53,12 +59,18 @@ public class SortTest {
 		states = PopulateStateInfo.populateStateInfo();
 	}
 
+	/**
+	 * tests to check that sorting by hpi is functional
+	 */
 	@Test
 	public void test_sort_hpi() {
 		Sort.sort(states, fieldT.hpi);
 		assertTrue(isSorted(states, fieldT.hpi));
 	}
 	
+	/**
+	 * tests to check that sorting by crime rate is functional
+	 */
 	@Test
 	public void test_sort_crime() {
 		Sort.sort(states, fieldT.crime_rate);
@@ -66,6 +78,9 @@ public class SortTest {
 		assertTrue(isSorted(states, fieldT.crime_rate));
 	}
 
+	/**
+	 * tests to check that sorting by housing price is functional
+	 */
 	@Test
 	public void test_sort_housing_price() {
 		Sort.sort(states, fieldT.housing_price);
