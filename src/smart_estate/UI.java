@@ -1,5 +1,6 @@
 /**
  * Brief: UI module provides basic functions for CLI.
+
  * Prerequisite: Functions for options in menu needs to be implemented separately.
  * Usage: N/A.
  * 
