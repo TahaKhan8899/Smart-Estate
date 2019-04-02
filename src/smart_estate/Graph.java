@@ -81,7 +81,6 @@ public class Graph {
 
 	public static void addEdge(String v, String w) {
 		adj[states.indexOf(v)].add(w); // Add w to v’s list.
-//		adj[states.indexOf(w)].add(v); // Add v to w’s list.
 		E++;
 	}
 
