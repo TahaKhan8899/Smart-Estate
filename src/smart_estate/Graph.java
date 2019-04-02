@@ -81,7 +81,7 @@ public class Graph {
 
 	public static void addEdge(String v, String w) {
 		adj[states.indexOf(v)].add(w); // Add w to v’s list.
-		adj[states.indexOf(w)].add(v); // Add v to w’s list.
+//		adj[states.indexOf(w)].add(v); // Add v to w’s list.
 		E++;
 	}
 
@@ -93,17 +93,18 @@ public class Graph {
 		
 		//The following code is just to print the graph, for debugging purposes
 		Graph g = genGraph();
-		int count = 1;
+		int count = 0;
 		for (int i = 0; i < adj.length; i++) {
 			Iterator<String> curr = g.adj[i].iterator();
-			System.out.println("current: " + count);
+			System.out.println("Current: " + states.get(count));
+			count++;
 			
 			while (curr.hasNext()) {
 				
 				System.out.println(curr.next());
 				
 			}
-			count++;
+			
 			
 		}
 		System.out.println(count);
