@@ -23,7 +23,7 @@ public class PopulateStateInfo {
 		try {
 			HPI = ReadHPI.read_data("data/hpi.csv");
 			for (int i = 0; i < 50; i++) {
-				states[i].setCrimeRate(HPI[i].value());
+				states[i].setHPI(HPI[i].value());
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
