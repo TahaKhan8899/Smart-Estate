@@ -66,7 +66,8 @@ None
 
 \subsubsection* {Exported Types}
 
-StateInfo = ?
+StateInfo = ?\\
+fieldT = \{hpi, crime\_rate, housing\_price\}
 
 \subsubsection* {Exported Access Programs}
 
@@ -187,7 +188,7 @@ PopulateStateInfo
 ReadHPI\\
 ReadCrimeRate\\
 ReadHousingPrices\\
-StateInfo\\
+StateInfo
 
 \subsection* {Syntax}
 
@@ -196,14 +197,6 @@ StateInfo\\
 \begin{tabular}{| l | l | l | p{5cm} |}
 \hline
 \textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
-\hline
-initStates &  &  & none\\
-\hline
-populateHPI & & & none\\
-\hline
-populateCrimeRate & & & none\\
-\hline
-populateHousingPrice & & & none\\
 \hline
 populateStateInfo & & seq of StateInfo & none\\
 \hline
@@ -228,36 +221,28 @@ None
 
 \subsubsection* {Access Routine Semantics}
 
-initStates():
-\begin{itemize}
-\item transition: $states := $($\forall s: $String $| s \in state\_names \;\;.\;\; s = $ StateInfo($s$))
-\item exception: none
-\end{itemize}
-
-\noindent populateHPI():
-\begin{itemize}
-\item transition: $states := $\\($\forall i: $int $| 0 \le i \le 50 \;.\; states[i].$setHPI(ReadHPI.read\_data("data/hpi.csv").value()))
-\item exception: none
-\end{itemize}
-
-\noindent populateCrimeRate():
-\begin{itemize}
-\item transition: $states := $\\($\forall i: $int $| 0 \le i \le 50 \;.\; states[i].$setCrimeRate(ReadCrimeRate.CRList().value()))
-\item exception: none
-\end{itemize}
-
-\noindent populateHousingPrice():
-\begin{itemize}
-\item transition: $states := $\\($\forall i: $int $| 0 \le i \le 50 \;.\; states[i].$setHousingPrice(ReadHousingPrices.\\readPrices("data/housingPrices.csv").value()))
-\item exception: none
-\end{itemize}
-
 \noindent populateStateInfo():
 \begin{itemize}
 \item transition: initStates(); populateHPI(); populateCrimeRate(); \\populateHousingPrice();
 \item output: $\mathit{out} := states$
 \item exception: None
 \end{itemize}
+
+\subsubsection* {Local Functions}
+
+\noindent
+$\text{initStates}() \equiv$ $states := $($\forall s: $String $| s \in state\_names \;\;.\;\; s = $ StateInfo($s$))\\
+
+\noindent
+$\text{populateHPI}() \equiv$ $states := $\\($\forall i: $int $| 0 \le i \le 50 \;.\; states[i].$setHPI(ReadHPI.read\_data("data/hpi.csv").value()))\\
+
+\noindent
+$\text{populateCrimeRate}() \equiv$ $states := $\\($\forall i: $int $| 0 \le i \le 50 \;.\; states[i].$setCrimeRate(ReadCrimeRate.CRList().value()))\\
+
+\noindent
+$\text{populateHousingPrice}() \equiv$ $states := $\\($\forall i: $int $| 0 \le i \le 50 \;.\; states[i].$setHousingPrice(ReadHousingPrices.\\readPrices("data/housingPrices.csv").value()))
+
+
 
 \newpage
 
@@ -269,13 +254,10 @@ binSearch
 
 \subsection* {Uses}
 
-StateInfo
+StateInfo\\
+Sort
 
 \subsection* {Syntax}
-
-\subsubsection* {Exported Types}
-
-fieldT = {hpi, crime\_rate, housing\_price}
 
 \subsubsection* {Exported Access Programs}
 
@@ -289,33 +271,29 @@ binSearch &  seq of StateInfo, fieldT, $\mathbb{R}$ &  StateInfo & none\\
 
 \subsection* {Semantics}
 
-\subsubsection* {State Variables}
-
-None
-
-\subsubsection* {State Invariant}
-
-None
-
 \subsubsection* {Assumptions \& Design Decisions}
 
 \begin{itemize}
-\item The result of populateStateInfo must be stored in a StateInfo list of 50 length.
+\item 
 \end{itemize}
 
 \subsubsection* {Access Routine Semantics}
 
-initStates():
+binSearch($arr, field, key$):
 \begin{itemize}
-\item transition: 
-\item output: $\mathit{out} :=$
+\item output: $\mathit{out} := arr[i]$ such that\\
+\indent
+$isSorted(arr, field) \land $\\ 
+$(key \in \{arr.field\} \implies arr[i].field = key) \land$\\
+$(key <$ min($\{arr.field\}$)$ \implies arr[i] = arr[0]) \land$\\
+$(key >$ max($\{arr.field\}$)$ \implies arr[i] = arr[arr.length-1]) \land$\\
+$(key \notin \{arr.field\} \implies arr[i-1].field < arr[i].field = key < arr[i+1].field)$
 \item exception: none
 \end{itemize}
 
 \newpage
 
-<<<<<<< HEAD
-=======
+
 \section* {ReadCrimeRate Module}
 
 \subsection* {Module}
@@ -366,12 +344,12 @@ The input file will match the given specification.
 \begin{itemize}
 \item transition: read data from the file crime\_rate\_data associated with the string s.
   Use this data to create an array of Pairs, which house the name of a state along with
-  the avergae number of violent crimes per capita over 49 years for every 100,000 person.
+  the average number of violent crimes per capita over 49 years for every 100,000 person.
 
   The csv file has the following format, where $year$, $population$, total number of $violent\ crime$,
   followed by a breakdown of the number of violent crimes into sub categories including murder, robbery, 
   aggravated assault, etc. which is not used in the computation of the overall project. This is split by a 5 wide
-  horizzontal gap separating each state's independent statistics. 
+  horizontal gap separating each state's independent statistics. 
 
   \begin{equation}
     \begin{array}{cccc}
@@ -389,5 +367,5 @@ The input file will match the given specification.
 \end{itemize}
 
 
->>>>>>> 8abfb926d0fb1316a15cc65f2d3530309aa3ea5f
+
 \end{document}
