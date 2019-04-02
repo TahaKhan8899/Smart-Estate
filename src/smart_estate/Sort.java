@@ -1,5 +1,5 @@
 /**
- * This module sorts an array of StateInfo objects by HPI, crime rate, or housing prices
+ * This module sorts an array of StateInfo objects by HPI, crime rate, or housing prices depending on the client's intent
  * @author Noa Barsky
  * Citation: Algorithms Fourth Edition by Robert Sedgwick and Kevin Wayne
  */
@@ -14,17 +14,11 @@ public class Sort {
 	/**
 	 * @brief Function called by client to sort the array
 	 * @param a - An array of StateInfo objects
-<<<<<<< HEAD
 	 * @param intent - An enum of fieldT that signals the what field to sort by
 	 */
 	public static void sort(StateInfo[] a, fieldT intent) {
-=======
-	 * @param field - An enum of fieldT that signals the what field to sort by
-	 */
-	public static void sort(StateInfo[] a, fieldT field) {
->>>>>>> 8abfb926d0fb1316a15cc65f2d3530309aa3ea5f
 		StdRandom.shuffle(a); // Eliminate dependence on input.
-		sort(a, 0, a.length - 1, field);
+		sort(a, 0, a.length - 1, intent);
 	}
     
 	
@@ -33,20 +27,14 @@ public class Sort {
 	 * @param a, an array of StateInfo objects
 	 * @param lo, first index
 	 * @param hi, last index
-<<<<<<< HEAD
 	 * @param intent, An enum of fieldT that signals the what field to sort by
 	 */
 	private static void sort(StateInfo[] a, int lo, int hi, fieldT intent) {
-=======
-	 * @param field, An enum of fieldT that signals the what field to sort by
-	 */
-	private static void sort(StateInfo[] a, int lo, int hi, fieldT field) {
->>>>>>> 8abfb926d0fb1316a15cc65f2d3530309aa3ea5f
 		if (hi <= lo)
 			return;
-		int j = partition(a, lo, hi, field); 
-		sort(a, lo, j - 1, field); 
-		sort(a, j + 1, hi, field);
+		int j = partition(a, lo, hi, intent); 
+		sort(a, lo, j - 1, intent); 
+		sort(a, j + 1, hi, intent);
 	}
 
 	
@@ -55,24 +43,18 @@ public class Sort {
 	 * @param a, an array of StateInfo objects
 	 * @param lo, first index
 	 * @param hi, last index
-<<<<<<< HEAD
 	 * @param intent, An enum of fieldT that signals the what field to sort by
 	 */
 	private static int partition(StateInfo[] a, int lo, int hi, fieldT intent) {
-=======
-	 * @param field, An enum of fieldT that signals the what field to sort by
-	 */
-	private static int partition(StateInfo[] a, int lo, int hi, fieldT field) {
->>>>>>> 8abfb926d0fb1316a15cc65f2d3530309aa3ea5f
 		int i = lo, j = hi + 1; // left and right scan indices
 		StateInfo v = a[lo]; // partitioning item
 		while (true) { // Scan right, scan left, check for scan complete, and exchange.
-			while (less(a[++i], v, field)) {
+			while (less(a[++i], v, intent)) {
 				if (i == hi) {
 					break;
 				}
 			};
-			while (less(v, a[--j], field)) {
+			while (less(v, a[--j], intent)) {
 				if (j == lo) {
 					break;
 				}
@@ -88,30 +70,23 @@ public class Sort {
 	
 	
 	/**
-	 * @brief Helper functions that compares to StateInfo objects' properties based on the field parameter
+	 * @brief Helper functions that compares to StateInfo objects' properties based on the intent parameter
 	 * @param v, a StateInfo object to be compared
 	 * @param w, A StateInfo object to be compared
-	 * @param field, a string that signals what to sort by (hpi, housing price, crime rate)
+	 * @param intent, a string that signals the client's intent (buy, sell, or invest)
 	 */
-<<<<<<< HEAD
 	private static boolean less(StateInfo v, StateInfo w, fieldT intent) {
 		if (intent == fieldT.housing_price) {
 			return v.getHousingPrice() < w.getHousingPrice();	
 		} else if (intent == fieldT.crime_rate) {
 			return v.getCrimeRate() < w.getCrimeRate();
 		} else if (intent == fieldT.hpi) {
-=======
-	private static boolean less(StateInfo v, StateInfo w, fieldT field) {
-		if (field == fieldT.housing_price) {
-			return v.getHousingPrice() < w.getHousingPrice();	
-		} else if (field == fieldT.crime_rate) {
-			return v.getCrimeRate() < w.getCrimeRate();
-		} else if (field == fieldT.hpi) {
->>>>>>> 8abfb926d0fb1316a15cc65f2d3530309aa3ea5f
 			return v.getHPI() < w.getHPI();
 		} 
-		System.out.println("field field filled out incorrectly");
+		System.out.println("Intent field filled out incorrectly");
 		return false;
+
+		
 	}
     
 	
