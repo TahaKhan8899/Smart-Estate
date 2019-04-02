@@ -85,11 +85,13 @@ public class Graph {
 		E++;
 	}
 
-	public Iterable<String> adj(String v) {
-		return adj[states.indexOf(v)];
+	public Iterable<String> adj(int v) {
+		return adj[v];
 	}
 	
 	public static void main (String args[]) throws IOException {
+		
+		//The following code is just to print the graph, for debugging purposes
 		Graph g = genGraph();
 		int count = 1;
 		for (int i = 0; i < adj.length; i++) {
