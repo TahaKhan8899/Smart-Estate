@@ -6,14 +6,15 @@ import java.util.*;
 import edu.princeton.cs.algs4.Bag;
 
 public class Graph {
-	private static int V; // number of vertices
+	public static int V; // number of vertices
 	private static int E; // number of edges
 	private static Bag<String>[] adj; // adjacency lists
 	public static ArrayList<String> states = new ArrayList<String>();
 
 	public Graph(int V) {
-		V = V;
-		E = 0;
+		this.V = V;
+		this.E = 0;
+		
 		adj = (Bag<String>[]) new Bag[V]; // Create array of lists.
 		for (int v = 0; v < V; v++) // Initialize all lists
 			adj[v] = new Bag<String>(); // to empty.
@@ -29,14 +30,8 @@ public class Graph {
 				String[] info = line.split(", " );
 				String state = info[0];
 				states.add(state);
-				line = reader.readLine(); 
-				
-				
+				line = reader.readLine(); 	
 			}
-			
-
-
-			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -46,6 +41,7 @@ public class Graph {
 	public static Graph genGraph() throws IOException {
 		readStates();
 		Graph g = new Graph(50);
+		
 		try {
 			
 			BufferedReader reader = new BufferedReader (new FileReader("data/connectedStates.txt")); 
