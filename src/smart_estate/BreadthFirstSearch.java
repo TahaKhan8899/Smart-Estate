@@ -37,27 +37,30 @@ public class BreadthFirstSearch {
 		
 	}
 
-	/*Alabama: Florida, Georgia, Mississippi, Tennessee
-	 * Trace:
-	 * graph us, "Alabama"
-	 * marked[0] = true
-	 * queue = "Alabama"
-	 * for state  in bag(Florida, Georgia, Mississippi, Tennessee)
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * */
-
+	public static StateInfo[] getStateInfo(ArrayList<String> neighbours) {
+		StateInfo[] statesInfo = new StateInfo[50];
+		statesInfo = PopulateStateInfo.populateStateInfo();
+		StateInfo[] stateFeatures = new StateInfo[neighbours.size()];
+		for (int i = 0; i < neighbours.size(); i++) {
+			StateInfo info = binSearch.binSearch(statesInfo, neighbours.get(i));
+			stateFeatures[i] = info;
+			
+		}
+		return stateFeatures;
+		
+		
+	}
 
 	public static void main(String[] args) throws IOException {
 		
 		Graph g = Graph.genGraph();
 		ArrayList<String> p = new ArrayList<String>();
-		p = BreadthFirstSearch(g, "California");
-		System.out.println(p);
+		p = BreadthFirstSearch(g, "Alabama");
+		StateInfo[] info = getStateInfo(p);
+		for (int i = 0; i < info.length; i++) {
+			System.out.println(info[i].toString());
+		}
+
 		
 
 	}
