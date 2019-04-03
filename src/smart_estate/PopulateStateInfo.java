@@ -4,20 +4,29 @@ import java.io.IOException;
 
 /**
  * This modules reads in data from datasets into a list of state infos
+ * 
  * @author Connor Hewick
  *
  */
 public class PopulateStateInfo {
 	static StateInfo[] states = new StateInfo[50];
-	static String[] state_names = {"Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"};
-	
-	
+	static String[] state_names = StateGen.readStates();
+		
+		/* { "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
+			"Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky",
+			"Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri",
+			"Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina",
+			"North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina",
+			"South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia",
+			"Wisconsin", "Wyoming" }; */
+	// If you want to replace the array use: StateGen.readStates()
+
 	private static void initStates() {
 		for (int i = 0; i < 50; i++) {
 			states[i] = new StateInfo(state_names[i]);
 		}
 	}
-	
+
 	private static void populateHPI() {
 		Pair[] HPI;
 		try {
@@ -30,7 +39,7 @@ public class PopulateStateInfo {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private static void populateCrimeRate() {
 		Pair[] CR = ReadCrimeRate.load_crime_data("data/CrimeStateByState.csv");
 		for (int i = 0; i < 50; i++) {
@@ -44,7 +53,7 @@ public class PopulateStateInfo {
 			states[i].setHousingPrice(HP[i].value());
 		}
 	}
-	
+
 	public static StateInfo[] populateStateInfo() {
 		initStates();
 		populateHPI();
@@ -52,13 +61,13 @@ public class PopulateStateInfo {
 		populateHousingPrice();
 		return states;
 	}
-	
+
 	public static void main(String[] args) {
 		// demo of how to use
 		StateInfo[] array = new StateInfo[50];
 		array = populateStateInfo();
 		for (int i = 0; i < 50; i++)
-			System.out.print(array[i].toString()+"\n");
+			System.out.print(array[i].toString() + "\n");
 		// array is now an array of all state info objects
 	}
 

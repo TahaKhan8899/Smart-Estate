@@ -47,14 +47,14 @@ public class Window {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+
 		// create income text field
 		txtIncome = new JTextField();
 		txtIncome.setText("income");
 		txtIncome.setBounds(157, 54, 130, 26);
 		frame.getContentPane().add(txtIncome);
 		txtIncome.setColumns(10);
-		
+
 		// create buy button
 		JButton btnBuy = new JButton("Buy (House P)");
 		btnBuy.addActionListener(new ActionListener() {
@@ -67,7 +67,7 @@ public class Window {
 		});
 		btnBuy.setBounds(157, 107, 117, 29);
 		frame.getContentPane().add(btnBuy);
-		
+
 		// create sell button
 		JButton btnSell = new JButton("Sell (CR)");
 		btnSell.addActionListener(new ActionListener() {
@@ -80,7 +80,7 @@ public class Window {
 		});
 		btnSell.setBounds(157, 148, 117, 29);
 		frame.getContentPane().add(btnSell);
-		
+
 		// create invest button
 		JButton btnInvest = new JButton("Invest (HPI)");
 		btnInvest.addActionListener(new ActionListener() {
@@ -93,12 +93,12 @@ public class Window {
 		});
 		btnInvest.setBounds(157, 185, 117, 29);
 		frame.getContentPane().add(btnInvest);
-		
+
 		// create income label
 		JLabel lblEnterAnnualIncome = new JLabel("Enter Annual Income:");
 		lblEnterAnnualIncome.setBounds(6, 59, 151, 16);
 		frame.getContentPane().add(lblEnterAnnualIncome);
-		
+
 		// create output state text field
 		txtState = new JTextField();
 		txtState.setEditable(false);
@@ -106,19 +106,19 @@ public class Window {
 		txtState.setBounds(298, 148, 130, 26);
 		frame.getContentPane().add(txtState);
 		txtState.setColumns(10);
-		
+
 		// create best state label
 		JLabel lblBestState = new JLabel("Best State:");
 		lblBestState.setBounds(298, 125, 97, 16);
 		frame.getContentPane().add(lblBestState);
 	}
-	
+
 	// general action button
 	private String buttonAction(String in, fieldT field) {
 		// init state info
 		StateInfo[] states = new StateInfo[50];
 		states = PopulateStateInfo.populateStateInfo();
-		
+
 		if (checkIncome(in)) { // if input is numeric
 			double income = Double.parseDouble(in); // convert input
 			// main action goes here
@@ -126,17 +126,16 @@ public class Window {
 		} else {
 			return "Error";
 		}
-		
-		
+
 	}
-	
+
 	// function to check if income is numeric
 	private boolean checkIncome(String in) {
-		try {  
-		    Double.parseDouble(in);  
-		    return true;
-		  } catch(NumberFormatException e){  
-		    return false;  
-		  }  
+		try {
+			Double.parseDouble(in);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
 	}
 }

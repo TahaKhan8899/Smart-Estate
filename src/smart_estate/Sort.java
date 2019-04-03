@@ -7,6 +7,7 @@
 package smart_estate;
 
 import java.io.IOException;
+
 import edu.princeton.cs.algs4.StdRandom;
 
 public class Sort {
