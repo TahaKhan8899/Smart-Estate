@@ -4,6 +4,12 @@ package smart_estate;
  * @author Connor Hewick
  *
  */
+
+/**
+ * @brief enum to represent 3 fields to search
+ */
+enum fieldT {hpi, crime_rate, housing_price}
+
 public class StateInfo {
 	
 	private final String state;

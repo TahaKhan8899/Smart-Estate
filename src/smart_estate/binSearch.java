@@ -1,9 +1,5 @@
 package smart_estate;
 
-/**
- * @brief enum to represent 3 fields to search
- */
-enum fieldT {hpi, crime_rate, housing_price}
 
 /**
  * This module performs binary search on the list of StateInfo's
