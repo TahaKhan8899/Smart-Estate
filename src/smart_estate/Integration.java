@@ -34,7 +34,7 @@ public class Integration {
 		 * TODO: Implement a tolerance for the search so the user can enter whatever
 		 * value they want
 		 */
-		StateInfo result = binSearch.binSearch(array, fieldT.housing_price, 286100);
+		StateInfo result = binSearch.binSearch(array, fieldT.housing_price, income);
 
 		System.out.println("Search result: " + result.getState());
 

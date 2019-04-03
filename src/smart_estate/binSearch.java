@@ -104,7 +104,29 @@ public class binSearch {
 		return empty;
 	}
 	
-	/*
+	public static StateInfo binSearch(StateInfo[] arr, String key) 
+	{
+		// set min and max index values
+		int lo = 0;
+		int hi = arr.length - 1;
+		
+		while (lo <= hi) {
+			int mid = (hi + lo) / 2; // set new mid point
+			if (key.compareTo(arr[mid].getState()) < 0) {
+				hi = mid - 1;
+			} else if (key.compareTo(arr[mid].getState()) > 0) {
+				lo = mid + 1;
+			} else {
+				return arr[mid];
+			}
+		}
+		
+		// empty return if all fails
+		StateInfo empty = new StateInfo("empty");
+		return empty;
+		
+	}
+	
 	public static void main(String[] args) {
 		// demo of use
 		
@@ -114,12 +136,18 @@ public class binSearch {
 		
 		//demo 
 		
-		StateInfo result = binSearch(array, fieldT.hpi, 112);
+		StateInfo result = binSearch(array, fieldT.crime_rate, 120);
 		
 		//result
 		System.out.println(result.getState());
+		
+		//demo of sort alphabetical and search
+		Sort.sort(array);
+		StateInfo res2 = binSearch(array, "New York");
+		System.out.println(res2.toString());
+
 	}
-	*/
+	
 	
 }
 

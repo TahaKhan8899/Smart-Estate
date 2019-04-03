@@ -100,14 +100,15 @@ public class Graph {
 			
 			while (curr.hasNext()) {
 				
-				System.out.println(curr.next());
+				System.out.print(curr.next());
 				
 			}
+			System.out.println("");
 			
 			
 		}
 		
-
+               
 		
 		
 		
