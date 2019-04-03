@@ -267,6 +267,8 @@ Sort
 \hline
 binSearch &  seq of StateInfo, fieldT, $\mathbb{R}$ &  StateInfo & none\\
 \hline
+binSearch &  seq of StateInfo, String &  StateInfo & none\\
+\hline
 \end{tabular}
 
 \subsection* {Semantics}
@@ -288,6 +290,13 @@ $(key \in \{arr.field\} \implies arr[i].field = key) \land$\\
 $(key <$ min($\{arr.field\}$)$ \implies arr[i] = arr[0]) \land$\\
 $(key >$ max($\{arr.field\}$)$ \implies arr[i] = arr[arr.length-1]) \land$\\
 $(key \notin \{arr.field\} \implies arr[i-1].field < arr[i].field = key < arr[i+1].field)$
+\item exception: none
+\end{itemize}
+
+\noindent
+binSearch($arr, key$):
+\begin{itemize}
+\item output: $\mathit{out} := arr[i]$ such that $arr[i].state = key$
 \item exception: none
 \end{itemize}
 

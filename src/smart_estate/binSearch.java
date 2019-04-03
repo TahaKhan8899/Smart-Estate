@@ -104,6 +104,12 @@ public class binSearch {
 		return empty;
 	}
 	
+	/**
+	 * @brief binary search that will return object of specific state
+	 * @param arr array of StateInfo's to search through
+	 * @param key name of state to find
+	 * @return StateInfo object of key state
+	 */
 	public static StateInfo binSearch(StateInfo[] arr, String key) 
 	{
 		// set min and max index values
