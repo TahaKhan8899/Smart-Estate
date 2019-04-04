@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @author aissaelwazani
+ * @author Akram Elwazani
  *
  */
 public class SortTest {
