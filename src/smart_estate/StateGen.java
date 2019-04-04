@@ -31,7 +31,7 @@ public class StateGen {
 	public static void main(String[] args) {
 		String s[] = readStates();
 		for (int i = 0; i < states.length; i++) {
-			System.out.println(s[i]);
+			System.out.println((i + 1) + ": "+ s[i]);
 		}
 
 	}

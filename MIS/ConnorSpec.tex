@@ -374,6 +374,67 @@ The input file will match the given specification.
 
 \item exception: FileNotFoundException
 \end{itemize}
+\newpage
+\subsection*{Module}
+
+Sort
+
+\subsection* {Uses}
+
+binSearch
+BreadthFirstSearch
+Integration
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Constants}
+
+None
+
+\subsubsection* {Exported Types}
+
+None
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | p{5cm} |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+sort & sequence of StateInfo, fieldT &  & none\\
+\hline
+sort &  sequence of StateInfo & & none\\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+None
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Assumptions \& Design Decisions}
+
+\begin{itemize}
+\item Sort is called on a sequence of StateInfo and category by which the sequence is sorted is also indicated when sort is called.
+\end{itemize}
+
+\subsubsection* {Access Routine Semantics}
+
+\noindent sort(a, intent) :
+\begin{itemize}
+\item transition: $a := sort(a, 0, |a| - 1, intent)$
+\item exception: none
+\end{itemize}
+
+\noindent sort(a):
+\begin{itemize}
+\item transition: $a := sort(a, 0, |a| - 1)$
+\item exception: none
+\end{itemize}
 
 
 
