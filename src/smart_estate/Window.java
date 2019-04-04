@@ -8,13 +8,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import java.awt.TextArea;
 
 public class Window {
 
 	private JFrame frame;
 	private JTextField txtIncome;
 	private JTextField txtState;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -51,70 +53,101 @@ public class Window {
 		// create income text field
 		txtIncome = new JTextField();
 		txtIncome.setText("income");
-		txtIncome.setBounds(157, 54, 130, 26);
+		txtIncome.setBounds(157, 40, 130, 26);
 		frame.getContentPane().add(txtIncome);
 		txtIncome.setColumns(10);
+		
+		TextArea txtNieghbours = new TextArea();
+		txtNieghbours.setEditable(false);
+		txtNieghbours.setBounds(6, 141, 434, 129);
+		frame.getContentPane().add(txtNieghbours);
 
 		// create buy button
-		JButton btnBuy = new JButton("Buy (House P)");
+		JButton btnBuy = new JButton("Housing Price");
 		btnBuy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// buy action
 				String in = txtIncome.getText();
-				String out = buttonAction(in, fieldT.housing_price);
+				String out = buttonBestState(in, fieldT.housing_price);
+		
+				txtNieghbours.setText(null);
+				String out2 = nieghbours(BreadthFirstSearch.neighbourStates(out));
+				System.out.println(out2);
+				txtNieghbours.setText(out2);
 				txtState.setText(out);
 			}
 		});
-		btnBuy.setBounds(157, 107, 117, 29);
+		btnBuy.setBounds(6, 63, 117, 29);
 		frame.getContentPane().add(btnBuy);
 
 		// create sell button
-		JButton btnSell = new JButton("Sell (CR)");
+		JButton btnSell = new JButton("Crime Rate");
 		btnSell.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// sell action
 				String in = txtIncome.getText();
-				String out = buttonAction(in, fieldT.crime_rate);
+				String out = buttonBestState(in, fieldT.crime_rate);
+				txtState.setText(out);
+				
+				String out2 = nieghbours(BreadthFirstSearch.neighbourStates(out));
+				txtNieghbours.setText(out2);
 				txtState.setText(out);
 			}
 		});
-		btnSell.setBounds(157, 148, 117, 29);
+		btnSell.setBounds(119, 63, 117, 29);
 		frame.getContentPane().add(btnSell);
 
 		// create invest button
-		JButton btnInvest = new JButton("Invest (HPI)");
+		JButton btnInvest = new JButton("HPI");
 		btnInvest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// invest action
 				String in = txtIncome.getText();
-				String out = buttonAction(in, fieldT.hpi);
+				String out = buttonBestState(in, fieldT.hpi);
+				txtState.setText(out);
+				
+				txtNieghbours.setText("");
+				String out2 = nieghbours(BreadthFirstSearch.neighbourStates(out));
+				txtNieghbours.setText(out2);
 				txtState.setText(out);
 			}
 		});
-		btnInvest.setBounds(157, 185, 117, 29);
+		btnInvest.setBounds(237, 63, 117, 29);
 		frame.getContentPane().add(btnInvest);
 
 		// create income label
 		JLabel lblEnterAnnualIncome = new JLabel("Enter Annual Income:");
-		lblEnterAnnualIncome.setBounds(6, 59, 151, 16);
+		lblEnterAnnualIncome.setBounds(6, 45, 151, 16);
 		frame.getContentPane().add(lblEnterAnnualIncome);
 
 		// create output state text field
 		txtState = new JTextField();
 		txtState.setEditable(false);
 		txtState.setText("state");
-		txtState.setBounds(298, 148, 130, 26);
+		txtState.setBounds(92, 87, 130, 26);
 		frame.getContentPane().add(txtState);
 		txtState.setColumns(10);
 
 		// create best state label
 		JLabel lblBestState = new JLabel("Best State:");
-		lblBestState.setBounds(298, 125, 97, 16);
+		lblBestState.setBounds(16, 92, 97, 16);
 		frame.getContentPane().add(lblBestState);
+		
+		// create instruction label
+		JLabel lblInstructions = new JLabel("intructional blurb");
+		lblInstructions.setBounds(6, 17, 422, 16);
+		frame.getContentPane().add(lblInstructions);
+		
+		// create nieghbours label
+		JLabel lblNieghbours = new JLabel("Nieghbouring States:");
+		lblNieghbours.setBounds(6, 119, 143, 16);
+		frame.getContentPane().add(lblNieghbours);
+		
+		
 	}
 
 	// general action button
-	private String buttonAction(String in, fieldT field) {
+	private String buttonBestState(String in, fieldT field) {
 		// init state info
 		StateInfo[] states = new StateInfo[50];
 		states = PopulateStateInfo.populateStateInfo();
@@ -137,5 +170,14 @@ public class Window {
 		} catch (NumberFormatException e) {
 			return false;
 		}
+	}
+	
+	// function to string nieghbour states
+	private String nieghbours(StateInfo[] states) {
+		String out = "";
+		for (StateInfo st : states) {
+			out = out + st.toString() + "\n";
+		}
+		return out;
 	}
 }

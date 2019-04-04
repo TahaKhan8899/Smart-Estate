@@ -95,7 +95,17 @@ public class StateInfo {
 	 * @return string form of state info
 	 */
 	public String toString() {
-		return this.state + ": " + " HPI: " + this.hpi + " Crime Rate: " + this.crime_rate + " Housing Price: "
+		return this.state + ": " + " HPI: " + round(this.hpi,2) + " Crime Rate: " + this.crime_rate + " Housing Price: "
 				+ this.housing_price;
+	}
+	
+	
+	private static double round(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
+
+	    long factor = (long) Math.pow(10, places);
+	    value = value * factor;
+	    long tmp = Math.round(value);
+	    return (double) tmp / factor;
 	}
 }
