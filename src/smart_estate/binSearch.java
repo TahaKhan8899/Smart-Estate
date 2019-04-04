@@ -29,7 +29,7 @@ public class binSearch {
 				return arr[0];
 			}
 			if (key > arr[arr.length - 1].getHPI()) {
-				return arr[0];
+				return arr[arr.length - 1];
 			}
 			break;
 		case crime_rate:
@@ -37,7 +37,7 @@ public class binSearch {
 				return arr[0];
 			}
 			if (key > arr[arr.length - 1].getCrimeRate()) {
-				return arr[0];
+				return arr[arr.length - 1];
 			}
 			break;
 		case housing_price:
@@ -45,7 +45,7 @@ public class binSearch {
 				return arr[0];
 			}
 			if (key > arr[arr.length - 1].getHousingPrice()) {
-				return arr[0];
+				return arr[arr.length - 1];
 			}
 			break;
 		}
