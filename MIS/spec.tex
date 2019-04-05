@@ -436,6 +436,216 @@ None
 \item exception: none
 \end{itemize}
 
+\subsubsection* {Local Functions}
+
+\noindent
+$\text{sort}(a, lo, hi, intent) \equiv $a := ($\forall i L $T$ | i \in a : a[i - 1]  $<$ a[i])  $ \\
+
+
+\noindent
+$\text{sort}(a, lo, hi) \equiv $a := ($\forall i L $T$ | i \in a : a[i - 1]  $<$ a[i])  $ \\
+
+\noindent
+$\text{partition}(a, lo, hi, intent) \equiv j \implies a[lo] $<=$ a[j] $<=$ a[hi]$ \\
+
+\noindent
+$\text{partition}(a, lo, hi) \equiv j \implies a[lo] $<=$ a[j] $<=$ a[hi]$ \\
+
+\noindent
+$\text{less}(v,  w, intent) \equiv v < w$ \\
+\noindent
+$\text{less}(v,  w) \equiv v < w$ \\
+
+\noindent
+$\text{exch}(a, i, j) \equiv a[i], a[j] := a[j], a[i]$ \\
+
+
+
+
+\newpage
+\section* {Graph Type Module}
+
+\subsection*{Module}
+
+Graph
+
+\subsection* {Uses}
+
+BreadthFirstSearch\\
+Integration 
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Constants}
+None
+
+
+
+\subsubsection* {Exported Types}
+None
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | p{5cm} |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Graph & $\mathbb{N}$ &  & none\\
+\hline
+genGraph & & $Graph$ & none\\
+\hline
+V & $\mathbb{N}$ &  & none\\
+\hline
+E & $\mathbb{N}$ &  & none\\
+\hline
+addEdge & String, String &  & none\\
+\hline
+adj & $\mathbb{N}$ & sequence of $Bag<String>$ & none\\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+\begin{itemize}
+\item $V$: $\mathbb{N}$
+\item $states$: sequence of Strings
+\end{itemize}
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Assumptions \& Design Decisions}
+
+\begin{itemize}
+\item In order to generate a graph the represents the US, genGraph is called instead of the constructor.
+\end{itemize}
+
+\subsubsection* {Access Routine Semantics}
+
+new Graph($V$):
+\begin{itemize}
+\item transition: $V, E := V, 0$
+\item exception: none
+\end{itemize}
+
+\noindent genGraph():
+\begin{itemize}
+\item output: $out :=$ Graph representing the US map
+\item exception: none
+\end{itemize}
+
+\noindent V():
+\begin{itemize}
+\item output: $out := V$
+\item exception: none
+\end{itemize}
+
+\noindent E():
+\begin{itemize}
+\item output: $out := E$
+\item exception: none
+\end{itemize}
+
+
+
+\noindent addEdge($v, w$):
+\begin{itemize}
+\item transition: $E, adj[v.index()] := E++, adj[v.index()].add(w)$
+\item exception: none
+\end{itemize}
+
+
+
+\noindent adj($v$):
+\begin{itemize}
+\item output: $out := adj[v]$
+\item exception: none
+\end{itemize}
+
+
+
+\newpage
+\section* {Breadth First Search Module}
+
+\subsection*{Module}
+
+BreadthFirstSearch
+
+\subsection* {Uses}
+
+Integration 
+
+\subsection* {Syntax}
+\subsubsection* {Exported Constants}
+None
+
+
+
+\subsubsection* {Exported Types}
+None
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | p{5cm} |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+BreadthFirstSearch & $Graph, String$ & $sequence of strings$ & none\\
+\hline
+bfs & & $Graph, String$ $sequence of strings$ & none\\
+\hline
+getStateInfo & $sequence of strings$ & $sequence of strings$ & none\\
+\hline
+neighbourStates & String & $sequence of strings$ & none\\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+\begin{itemize}
+\item $path$: $sequence of strings$
+\end{itemize}
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Assumptions \& Design Decisions}
+
+\begin{itemize}
+\item In order to implement breadth first search on a graph representing the U.S. neighbourStates is called
+\end{itemize}
+
+\subsubsection* {Access Routine Semantics}
+
+BreadthFirstSearch($G$, $s$) :
+\begin{itemize}
+\item output: $out := $ sequence of strings
+\item exception: none
+\end{itemize}
+
+\noindent bfs($G$, $s$) :
+\begin{itemize}
+\item output: $out := $ sequence of strings
+\item exception: none
+\end{itemize}
+
+\noindent getStateInfo($neighbours$) :
+\begin{itemize}
+\item output: $out := $ sequence of strings
+\item exception: none
+\end{itemize}
+
+\noindent neighbourStates($startState$):
+\begin{itemize}
+\item output: $out := $ sequence of strings
+\item exception: none
+\end{itemize}
 
 
 \end{document}
