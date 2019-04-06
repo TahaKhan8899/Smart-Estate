@@ -114,6 +114,8 @@ public class binSearch {
 	 * @return StateInfo object of key state
 	 */
 	public static StateInfo binSearch(StateInfo[] arr, String key) {
+		Sort.sort(arr);
+		
 		// set min and max index values
 		int lo = 0;
 		int hi = arr.length - 1;
@@ -150,7 +152,6 @@ public class binSearch {
 		System.out.println(result.getState());
 
 		// demo of sort alphabetical and search
-		Sort.sort(array);
 		StateInfo res2 = binSearch(array, "New York");
 		System.out.println(res2.toString());
 

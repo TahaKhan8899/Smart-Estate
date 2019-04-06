@@ -18,9 +18,7 @@ public class ReadHousingPrices {
 
 	/**
 	 * This is the constructor for reading housing prices
-	 * 
-	 * @param name
-	 *            - name of the file to get housing prices from
+	 * @param name - name of the file to get housing prices from
 	 */
 	public ReadHousingPrices(String name) {
 		fileName = name;
