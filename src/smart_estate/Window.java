@@ -13,7 +13,7 @@ import java.awt.TextArea;
 
 public class Window {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField txtIncome;
 	private JTextField txtState;
 	
@@ -134,7 +134,7 @@ public class Window {
 		frame.getContentPane().add(lblBestState);
 		
 		// create instruction label
-		JLabel lblInstructions = new JLabel("intructional blurb");
+		JLabel lblInstructions = new JLabel("Enter annual income. Then select your area of highest importance.");
 		lblInstructions.setBounds(6, 17, 422, 16);
 		frame.getContentPane().add(lblInstructions);
 		

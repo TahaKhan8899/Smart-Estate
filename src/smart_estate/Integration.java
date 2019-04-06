@@ -12,6 +12,15 @@ import java.util.Scanner;
 public class Integration {
 	
 	public static void main(String[] args) {
+		//launch the application
+		run_Smart_Estate();
+	}
+	
+	/**
+	 * Generate a Window object which outputs a GUI to the screen
+	 */
+	private static void run_Smart_Estate()
+	{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
