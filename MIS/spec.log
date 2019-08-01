@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  5 APR 2019 01:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  5 APR 2019 20:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -326,62 +326,67 @@ rate$ \OT1/cmr/m/n/12 Hous-ing Price: $\OML/cmm/m/it/12 housing[]price$\OT1/cmr
 /m/n/12 " 
  []
 
-[4] [5]
-Underfull \hbox (badness 10000) in paragraph at lines 233--235
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 222--224
+
+ []
+
+[5] [6] [7] [8] [9]
+Underfull \hbox (badness 10000) in paragraph at lines 376--378
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 236--238
+Underfull \hbox (badness 10000) in paragraph at lines 379--381
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 239--241
+Underfull \hbox (badness 10000) in paragraph at lines 382--384
 
  []
 
-[6] [7] [8] [9] [10]
-Underfull \hbox (badness 10000) in paragraph at lines 441--443
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 445--447
+[10] [11] [12] [13] [14] [15] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 658--660
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 448--450
+Underfull \hbox (badness 10000) in paragraph at lines 662--664
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 451--453
+Underfull \hbox (badness 10000) in paragraph at lines 665--667
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 454--458
+Underfull \hbox (badness 10000) in paragraph at lines 668--670
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 459--461
+Underfull \hbox (badness 10000) in paragraph at lines 671--675
 
  []
 
-[11]
-Overfull \hbox (34.79883pt too wide) in paragraph at lines 489--506
+
+Underfull \hbox (badness 10000) in paragraph at lines 676--678
+
+ []
+
+[17]
+Overfull \hbox (34.79883pt too wide) in paragraph at lines 706--723
 [] 
  []
 
-[12] [13]
-Overfull \hbox (106.73193pt too wide) in paragraph at lines 592--605
+[18] [19]
+Overfull \hbox (106.73193pt too wide) in paragraph at lines 809--822
 [] 
  []
 
-[14] [15] (./spec.aux) ) 
+[20] [21] (./spec.aux) ) 
 Here is how much of TeX's memory you used:
  2650 strings out of 492649
  36492 string characters out of 6129622
@@ -401,10 +406,10 @@ ts/cm/cmr17.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts
 cmsy8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 ti12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/symbol
 s/msbm10.pfb>
-Output written on spec.pdf (15 pages, 117813 bytes).
+Output written on spec.pdf (21 pages, 123641 bytes).
 PDF statistics:
- 93 PDF objects out of 1000 (max. 8388607)
- 65 compressed objects within 1 object stream
+ 112 PDF objects out of 1000 (max. 8388607)
+ 78 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
